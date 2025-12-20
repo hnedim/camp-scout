@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/starability.css">
 
 <main class="container pt-5 mt-5">
     
@@ -80,6 +81,22 @@
           action="/campgrounds/<%= campground._id %>/reviews"
           novalidate
         >
+
+        <label class="form-label mt-2" for="rating">Rating</label>
+          
+<fieldset class="starability-basic">
+  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="rating" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="rating" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="rating" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="rating" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="rating" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
           <label class="form-label" for="body">Review</label>
           <textarea
             class="form-control"
@@ -88,16 +105,7 @@
             required
           ></textarea>
 
-          <label class="form-label mt-2" for="rating">Rating</label>
-          <input
-            class="form-control"
-            type="number"
-            name="rating"
-            id="rating"
-            min="0"
-            max="5"
-            required
-          >
+          
 
           <button class="btn btn-primary mt-3">
             Submit Review
@@ -111,7 +119,9 @@
         <% } else { %>
         <% for (let review of campground.reviews) { %>
           <div class="card p-3">
-            <p class="card-title fw-bold"><%= review.rating %></p>
+            <p class="starability-result" data-rating="<%= review.rating %>">
+              Rated: <%= review.rating %> stars
+            </p>
             <p class="card-subtitle text-muted">By <%= review.author.username %></p>
             <p class="mb-1">Review: <%= review.body %></p>
             <% if(currentUser && review.author.equals(currentUser)){ %>

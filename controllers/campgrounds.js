@@ -13,7 +13,7 @@ module.exports.newCampground = async (req,res) => {
     const campground = new Campground(req.body);
     campground.author = req.user._id;
     await campground.save();
-    req.flash('success', 'Created a new campground')
+    req.flash('success', 'Created a new campground!')
     res.redirect(`/campgrounds/${campground._id}`);
 }
 
@@ -31,10 +31,12 @@ module.exports.renderEditForm = async (req,res) => {
 module.exports.updateCampground = async(req,res) => {
     const {id} = req.params;
     const campground = await Campground.findByIdAndUpdate(id, req.body);
+    req.flash('success', 'Succesfully updated campground!')
     res.redirect(`/campgrounds/${campground._id}`);
 }
 
 module.exports.deleteCampground = async (req,res) => {
     await Campground.findByIdAndDelete(req.params.id);
-    res.redirect("/campgrounds");
+    req.flash('success', 'Succesfully deleted campground!')
+    res.redirect('/campgrounds');
 }

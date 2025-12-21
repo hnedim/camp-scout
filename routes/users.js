@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
-const { storeReturnTo } = require('../middleware');
+const { storeReturnTo } = require('../utils/middleware.js');
 const users = require('../controllers/users');
 
 router.route('/register')

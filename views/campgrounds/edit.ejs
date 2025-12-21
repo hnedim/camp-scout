@@ -1,9 +1,25 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container py-5 mt-5">
+    <!-- Flash Messages -->
+  <% if (success && success.length) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+  
+  <% if (error && error.length) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
   <h2 class="mb-4 text-center">Edit Campground</h2>
 
-  <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" class="mx-auto needs-validation" style="max-width: 500px;" novalidate>
+  <form action="/campgrounds/<%= campground._id %>?_method=PUT" 
+    method="POST" class="mx-auto needs-validation" 
+    style="max-width: 500px;" novalidate enctype="multipart/form-data">
 
     <!-- Title -->
     <div class="mb-3">
@@ -17,10 +33,9 @@
       <input type="number" name="price" id="price" class="form-control" value="<%= campground.price %>" required>
     </div>
 
-    <!-- Image -->
     <div class="mb-3">
       <label for="image" class="form-label">Image</label>
-      <input type="text" name="image" id="image" class="form-control" value="<%= campground.image %>" required>
+      <input type="file" name="image" id="image" class="form-control" multiple>
     </div>
 
     <!-- Location -->
@@ -33,6 +48,14 @@
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
       <textarea name="description" id="description" class="form-control" required><%= campground.description %> </textarea>
+    </div>
+
+    <div class="mb-3">
+      <% campground.images.forEach(function(img, i) { %>
+        <img src="<%=img.thumbnail %>" alt="" class="img-thumbnail">
+        <label for="image-<%=i%>">Delete?</label>
+        <input type="checkbox" name="deleteImages[]" id="image-<%=i%>" value="<%=img.filename%>">
+        <% }) %>
     </div>
 
     <!-- Submit Button -->

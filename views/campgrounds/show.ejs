@@ -23,46 +23,53 @@
     <!-- CAMPGROUND CARD -->
     <div class="col-lg-6">
       <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              src="<%= campground.image %>"
-              alt="Campground"
-              class="img-fluid h-100 rounded-start"
-              style="object-fit: cover;"
-            >
-          </div>
-
-          <div class="col-md-8">
-            <div class="card-body d-flex flex-column h-100">
-              <h5 class="card-title"><%= campground.title %></h5>
-              <small class="text-muted mb-3">Submitted by <%= campground.author.username %></small>
-              <p class="card-text"><%= campground.description %></p>
-              <p class="card-text">$<%= campground.price %>/night</p>
-              <small class="text-muted mb-3"><%= campground.location %></small>
-
-              <% if(currentUser && campground.author.equals(currentUser._id)){ %>
-              <div class="mt-auto d-flex gap-2">
-                
-                  <a href="/campgrounds/<%= campground._id %>/edit"
-                  class="btn btn-primary"
+        
+        <!-- IMAGE CAROUSEL -->
+        <% if(campground.images && campground.images.length > 0) { %>
+        <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% campground.images.forEach((img, index) => { %>
+              <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                <img 
+                  src="<%= img.url %>" 
+                  class="d-block w-100" 
+                  alt="<%= campground.title %>"
+                  style="max-height: 400px; object-fit: cover;"
                 >
-                  Edit
-                </a>
-
-                <form
-                  method="POST"
-                  action="/campgrounds/<%= campground._id %>?_method=DELETE"
-                >
-                  <button class="btn btn-danger">
-                    Delete
-                  </button>
-                </form>
               </div>
-              <% } %>
-            </div>
+            <% }); %>
           </div>
+          
+          <% if(campground.images.length > 1) { %>
+          <button class="carousel-control-prev" type="button" data-bs-target="#campgroundCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#campgroundCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          <% } %>
+        </div>
+        <% } %>
 
+        <div class="card-body">
+          <h5 class="card-title"><%= campground.title %></h5>
+          <small class="text-muted mb-3">Submitted by <%= campground.author.username %></small>
+          <p class="card-text mt-3"><%= campground.description %></p>
+          <p class="card-text">$<%= campground.price %>/night</p>
+          <small class="text-muted mb-3"><%= campground.location %></small>
+
+          <% if(currentUser && campground.author.equals(currentUser._id)){ %>
+          <div class="mt-3 d-flex gap-2">
+            <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-primary">
+              Edit
+            </a>
+            <form method="POST" action="/campgrounds/<%= campground._id %>?_method=DELETE">
+              <button class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+          <% } %>
         </div>
       </div>
 
@@ -81,22 +88,22 @@
           action="/campgrounds/<%= campground._id %>/reviews"
           novalidate
         >
-
-        <label class="form-label mt-2" for="rating">Rating</label>
+          <label class="form-label mt-2" for="rating">Rating</label>
           
-<fieldset class="starability-basic">
-  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
-  <input type="radio" id="first-rate1" name="rating" value="1" />
-  <label for="first-rate1" title="Terrible">1 star</label>
-  <input type="radio" id="first-rate2" name="rating" value="2" />
-  <label for="first-rate2" title="Not good">2 stars</label>
-  <input type="radio" id="first-rate3" name="rating" value="3" />
-  <label for="first-rate3" title="Average">3 stars</label>
-  <input type="radio" id="first-rate4" name="rating" value="4" />
-  <label for="first-rate4" title="Very good">4 stars</label>
-  <input type="radio" id="first-rate5" name="rating" value="5" />
-  <label for="first-rate5" title="Amazing">5 stars</label>
-</fieldset>
+          <fieldset class="starability-basic">
+            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="rating" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="rating" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="rating" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="rating" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="rating" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+
           <label class="form-label" for="body">Review</label>
           <textarea
             class="form-control"
@@ -105,14 +112,13 @@
             required
           ></textarea>
 
-          
-
           <button class="btn btn-primary mt-3">
             Submit Review
           </button>
         </form>
       </section>
       <% } %>
+
       <section class="d-flex flex-column gap-3">
         <% if(campground.reviews.length === 0){ %>
           <small>No reviews yet</small>

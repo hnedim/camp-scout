@@ -3,7 +3,9 @@
 <div class="container py-5 mt-5 pt-5">
   <h2 class="mb-4 text-center">Create a Campground</h2>
 
-  <form action="/campgrounds" method="POST" class="mx-auto needs-validation" style="max-width: 500px;" novalidate>
+  <form action="/campgrounds" 
+  method="POST" class="mx-auto needs-validation" style="max-width: 500px;" 
+  novalidate enctype="multipart/form-data">
 
     <!-- Title -->
     <div class="mb-3">
@@ -19,7 +21,7 @@
 
     <div class="mb-3">
       <label for="image" class="form-label">Image</label>
-      <input type="text" name="image" id="image" class="form-control" required>
+      <input type="file" name="image" id="image" class="form-control" required multiple>
     </div>
 
     <!-- Location -->

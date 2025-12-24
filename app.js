@@ -40,9 +40,11 @@ mongoose.connect(dbUrl)
 }
 )
 
+const secret = process.env.SECRET || 'secret';
+
 const store = new MongoStore({
     url: dbUrl,
-    secret: 'keyboard cat',
+    secret: secret,
     touchAfter: 24 * 60 *60,
 });
 
@@ -53,7 +55,7 @@ store.on('error', function(e){
 const sessionConfig = {
     store:store,
     name: 'session',
-  secret: 'keyboard cat',
+  secret: secret,
   resave: false,
   saveUninitialized: true,
   cookie: { 

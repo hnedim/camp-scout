@@ -23,6 +23,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user')
 const users = require('./routes/users.js');
+const helmet = require('helmet');
+const MongoStore = require('connect-mongo')(session);
+const dbUrl = process.env.DB_URL;
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
@@ -30,14 +33,25 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
+mongoose.connect(dbUrl)
 .then(() => console.log("DB connected"))
 .catch((e) => {
     console.log('DB connection failed', e)
 }
 )
 
+const store = new MongoStore({
+    url: dbUrl,
+    secret: 'keyboard cat',
+    touchAfter: 24 * 60 *60,
+});
+
+store.on('error', function(e){
+    console.log('STORE ERROR', e);
+})
+
 const sessionConfig = {
+    store:store,
     name: 'session',
   secret: 'keyboard cat',
   resave: false,
@@ -56,7 +70,56 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
+app.use(helmet());
 
+const scriptSrcUrls = [
+    "https://stackpath.bootstrapcdn.com",
+    "https://cdn.maptiler.com",
+    "https://kit.fontawesome.com",
+    "https://cdnjs.cloudflare.com",
+    "https://cdn.jsdelivr.net",
+    "https://code.jquery.com",
+];
+const styleSrcUrls = [
+    "https://kit-free.fontawesome.com",
+    "https://stackpath.bootstrapcdn.com",
+    "https://cdn.maptiler.com",
+    "https://fonts.googleapis.com",
+    "https://use.fontawesome.com",
+    "https://cdn.jsdelivr.net",
+];
+const connectSrcUrls = [
+    "https://api.maptiler.com",
+    "https://ka-f.fontawesome.com",
+    "https://cdn.jsdelivr.net",
+    "https://cdn.maptiler.com",
+];
+const fontSrcUrls = [
+    "https://fonts.gstatic.com",
+];
+
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            childSrc: ["blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/ddnvjdoen/",
+                "https://images.unsplash.com",
+                "https://api.maptiler.com",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+        },
+    })
+);
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

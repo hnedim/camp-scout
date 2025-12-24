@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const dbUrl = process.env.DB_URL;
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
+mongoose.connect(dbUrl);
 
 const reviewSchema = mongoose.Schema({
     body: String,

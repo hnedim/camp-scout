@@ -2,6 +2,7 @@
 
 <main class="pt-5 mt-5">
   <div id="map" style="width: 100%; height: 500px"></div>
+  
 <!-- Flash Messages -->
   <% if (success && success.length) { %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -32,7 +33,7 @@
 
           <!-- Fixed-size image -->
           <div style="height: 200px; overflow: hidden;">
-            <img src="<%= campground.images.length != 0 ? campground.images[0].url : "https://placehold.co/600x400?text=No+Image" %>"
+            <img crossorigin="anonymous" src="<%= campground.images.length != 0 ? campground.images[0].url : "https://placehold.co/600x400?text=No+Image" %>"
                  class="card-img-top w-100 h-100"
                  style="object-fit: cover;"
                  alt="<%= campground.title %>">

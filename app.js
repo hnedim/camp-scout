@@ -143,6 +143,8 @@ app.get('/home', (req,res) => {
     res.render('home');
 })
 
+app.get('/health', (req, res) => res.status(200).send('OK'));
+
 app.get('/', (req,res) => {
     res.redirect('/home');
 })

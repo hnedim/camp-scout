@@ -1149,7 +1149,8 @@ footer .list-unstyled li:hover::before {
   }
   
   .hero-title::after {
-    display: none; /* Hide emoji on small screens */
+    right: -30px;
+    font-size: 1.75rem;
   }
   
   .hero-subtitle {

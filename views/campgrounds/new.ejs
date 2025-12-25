@@ -1,44 +1,133 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="container py-5 mt-5 pt-5">
-  <h2 class="mb-4 text-center">Create a Campground</h2>
+<div class="py-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        
+        <!-- Header -->
+        <div class="text-center mb-5">
+          <h1 class="mb-3">Add New Campground</h1>
+          <p class="lead">Share an amazing camping spot with the community</p>
+        </div>
 
-  <form action="/campgrounds" 
-  method="POST" class="mx-auto needs-validation" style="max-width: 500px;" 
-  novalidate enctype="multipart/form-data">
+        <!-- Form Card -->
+        <div class="card">
+          <div class="card-body">
+            <form action="/campgrounds" 
+                  method="POST" 
+                  class="needs-validation" 
+                  novalidate 
+                  enctype="multipart/form-data">
 
-    <!-- Title -->
-    <div class="mb-3">
-      <label for="title" class="form-label">Title</label>
-      <input type="text" name="title" id="title" class="form-control" required>
+              <!-- Title -->
+              <div class="mb-4">
+                <label for="title" class="form-label">Campground Name</label>
+                <input type="text" 
+                       name="title" 
+                       id="title" 
+                       class="form-control" 
+                       placeholder="Enter a memorable name"
+                       required>
+                <div class="invalid-feedback">
+                  Please provide a campground name.
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div class="mb-4">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" 
+                       name="location" 
+                       id="location" 
+                       class="form-control" 
+                       placeholder="City, State or specific address"
+                       required>
+                <div class="invalid-feedback">
+                  Please provide the location.
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div class="mb-4">
+                <label for="price" class="form-label">Price per Night</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" 
+                         name="price" 
+                         id="price" 
+                         class="form-control" 
+                         placeholder="0.00"
+                         min="0"
+                         step="0.01"
+                         required>
+                </div>
+                <div class="invalid-feedback">
+                  Please provide a valid price.
+                </div>
+              </div>
+
+              <!-- Images -->
+              <div class="mb-4">
+                <label for="image" class="form-label">Photos</label>
+                <input type="file" 
+                       name="image" 
+                       id="image" 
+                       class="form-control" 
+                       accept="image/*"
+                       multiple 
+                       required>
+                <div class="form-text">
+                  Upload multiple photos to showcase your campground
+                </div>
+                <div class="invalid-feedback">
+                  Please upload at least one photo.
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="mb-4">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" 
+                          id="description" 
+                          class="form-control" 
+                          rows="5"
+                          placeholder="Describe what makes this campground special..."
+                          required></textarea>
+                <div class="invalid-feedback">
+                  Please provide a description.
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="d-flex gap-3">
+                <a href="/campgrounds" class="btn btn-secondary flex-fill">
+                  Cancel
+                </a>
+                <button type="submit" class="btn btn-primary flex-fill">
+                  Create Campground
+                </button>
+              </div>
+            
+            </form>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="card mt-4 bg-light border-0">
+          <div class="card-body">
+            <h6 class="mb-3">Tips for a great listing</h6>
+            <ul class="list-unstyled mb-0 small text-muted">
+              <li class="mb-2">• Use high-quality photos that show the campground's best features</li>
+              <li class="mb-2">• Include details about nearby activities and attractions</li>
+              <li class="mb-2">• Mention available amenities like restrooms or fire pits</li>
+              <li>• Be honest about accessibility and difficulty level</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- Price -->
-    <div class="mb-3">
-      <label for="price" class="form-label">Price</label>
-      <input type="number" name="price" id="price" class="form-control" required>
-    </div>
-
-    <div class="mb-3">
-      <label for="image" class="form-label">Image</label>
-      <input type="file" name="image" id="image" class="form-control" required multiple>
-    </div>
-
-    <!-- Location -->
-    <div class="mb-3">
-      <label for="location" class="form-label">Location</label>
-      <input type="text" name="location" id="location" class="form-control" required>
-    </div>
-    <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea name="description" id="description" class="form-control" required></textarea>
-    </div>
-
-    <!-- Submit Button -->
-    <button class="btn btn-primary w-100">Submit</button>
-  
-  </form>
-  
+  </div>
 </div>
 
 

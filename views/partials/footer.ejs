@@ -1,0 +1,57 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="footer-brand">
+          <span style="font-size: 1.5rem;">🏕️</span>
+          <h5 class="mb-0">CampScout</h5>
+        </div>
+        <p class="footer-description">
+          Discover and share amazing campgrounds with fellow outdoor enthusiasts. 
+          Your gateway to unforgettable camping adventures.
+        </p>
+      </div>
+      
+      <div class="col-lg-2 col-md-3 col-6 mb-4">
+        <h6>Explore</h6>
+        <ul class="list-unstyled">
+          <li><a href="/campgrounds">All Campgrounds</a></li>
+          <li><a href="/campgrounds/new">Add Campground</a></li>
+          <li><a href="/">Featured Spots</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-2 col-md-3 col-6 mb-4">
+        <h6>Community</h6>
+        <ul class="list-unstyled">
+          <% if (!currentUser) { %>
+          <li><a href="/register">Join Us</a></li>
+          <li><a href="/login">Sign In</a></li>
+          <% } else { %>
+          <li><a href="/campgrounds">My Reviews</a></li>
+          <li><a href="/campgrounds/new">Share Spot</a></li>
+          <% } %>
+          <li><a href="/">Guidelines</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-4 col-md-12 mb-4">
+        <h6>About CampScout</h6>
+        <p class="mb-3">
+          Built by outdoor enthusiasts, for outdoor enthusiasts. 
+          Connect with fellow campers and discover your next adventure.
+        </p>
+        <div class="d-flex gap-3">
+          <span style="font-size: 1.5rem; opacity: 0.7;">🌲</span>
+          <span style="font-size: 1.5rem; opacity: 0.7;">⛺</span>
+          <span style="font-size: 1.5rem; opacity: 0.7;">🗺️</span>
+          <span style="font-size: 1.5rem; opacity: 0.7;">🔥</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-copyright text-center">
+      <p class="mb-0">&copy; 2025 CampScout. Made with ❤️ for nature lovers.</p>
+    </div>
+  </div>
+</footer>

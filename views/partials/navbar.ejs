@@ -1,41 +1,38 @@
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">YelpCamp</a>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="/">CampScout</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/home">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/campgrounds">Campgrounds</a>
+          <a class="nav-link" href="/campgrounds">Explore</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/campgrounds/new">Add New Campground</a>
+          <a class="nav-link" href="/campgrounds/new">Share Spot</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
         <% if(!currentUser){ %>
         <li class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
+          <a class="nav-link" href="/register">Join</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/login">Sign In</a>
         </li>        
         <% } %>
         <% if(currentUser){ %>
         <li class="nav-item">
-          <a class="nav-link" href="/"><%= currentUser.username %></a>
+          <a class="nav-link" href="/">👤 <%= currentUser.username %></a>
         </li>
-        <% } %>
-        <% if(currentUser){ %>
         <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
+          <a class="nav-link" href="/logout">Sign Out</a>
         </li>
         <% } %>
-
       </ul>
     </div>
   </div>

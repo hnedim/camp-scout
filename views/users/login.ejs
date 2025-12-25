@@ -1,29 +1,69 @@
 <% layout('layouts/boilerplate') %>
-<div class="mt-5 pt-5">
+
+<div class="auth-container">
+  <div class="auth-card">
+    
     <!-- Flash Messages -->
-  <% if (success && success.length) { %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <%= success %>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <% if (success && success.length) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    
+    <% if (error && error.length) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <h1 class="auth-title">Welcome back</h1>
+      <p class="auth-subtitle">Sign in to your CampScout account</p>
     </div>
-  <% } %>
-  
-  <% if (error && error.length) { %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <%= error %>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  <% } %>
-    <h1>Login</h1>
+
+    <!-- Login Form -->
     <form action="/login" method="POST" class="validated-form needs-validation" novalidate>
-        <div class="mb-3">
-            <label for="username" class="form-label">Username:</label>
-            <input type="text" class="form-control" name="username" id="username" required>
+      
+      <div class="mb-4">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" 
+               class="form-control" 
+               name="username" 
+               id="username" 
+               placeholder="Enter your username"
+               required>
+        <div class="invalid-feedback">
+          Please provide your username.
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password:</label>
-            <input type="password" class="form-control" name="password" id="password" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" 
+               class="form-control" 
+               name="password" 
+               id="password" 
+               placeholder="Enter your password"
+               required>
+        <div class="invalid-feedback">
+          Please provide your password.
         </div>
-        <button class="btn btn-primary">Login</button>
+      </div>
+
+      <button class="btn btn-primary w-100 mb-4">
+        Sign In
+      </button>
     </form>
+
+    <!-- Register Link -->
+    <div class="text-center">
+      <p class="mb-0">
+        Don't have an account? 
+        <a href="/register" class="auth-link">Create one here</a>
+      </p>
+    </div>
+  </div>
 </div>

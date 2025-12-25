@@ -1086,8 +1086,13 @@ footer .list-unstyled li:hover::before {
 }
 
 @media (max-width: 768px) {
+  /* ===================================
+     MOBILE LAYOUT FIXES
+     =================================== */
+  
+  /* Body and Navigation */
   body {
-    padding-top: 64px; /* Even smaller navbar on mobile */
+    padding-top: 70px; /* Adjusted for mobile navbar */
   }
   
   .navbar {
@@ -1102,93 +1107,14 @@ footer .list-unstyled li:hover::before {
     font-size: 1rem;
   }
   
-  .hero-section {
-    min-height: calc(100vh - 64px);
-    padding: var(--space-12) 0;
-  }
-  
-  .hero-title {
-    font-size: 2.75rem;
-    margin-bottom: var(--space-6);
-  }
-  
-  .hero-title::after {
-    display: none; /* Hide emoji on small screens */
-  }
-  
-  .hero-subtitle {
-    font-size: 1.125rem;
-    padding: 0 var(--space-4);
-    margin-bottom: var(--space-8);
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    gap: var(--space-3);
-    align-items: center;
-  }
-  
-  .hero-buttons .btn {
-    width: 100%;
-    max-width: 280px;
-    min-width: auto;
-  }
-  
-  .campground-title {
-    font-size: 1.25rem;
-  }
-  
-  .campground-meta {
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-  
-  .auth-card {
-    padding: var(--space-6);
-    margin: var(--space-4);
-  }
-  
-  .auth-container::before {
-    display: none; /* Hide decorative emoji on mobile */
-  }
-  
-  .card-body {
-    padding: var(--space-4);
-  }
-  
-  .btn-lg {
-    padding: var(--space-3) var(--space-6);
-    font-size: 0.875rem;
-  }
-  
-  .campgrounds-header {
-    padding: var(--space-8) 0 var(--space-6) 0;
-  }
-  
-  .campgrounds-header::before {
-    display: none;
-  }
-  
-  .price-badge {
-    font-size: 0.8125rem;
-    padding: var(--space-1) var(--space-2);
-  }
-  
-  /* Mobile-first card adjustments */
-  .campground-card .card-img-top {
-    height: 200px;
-  }
-  
-  .campground-card .card-body {
-    padding: var(--space-4);
-  }
-  
   /* Mobile navigation improvements */
   .navbar-collapse {
     background-color: var(--white);
     border-top: 1px solid var(--neutral-200);
     margin-top: var(--space-3);
-    padding-top: var(--space-3);
+    padding: var(--space-3) 0;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    box-shadow: var(--shadow-sm);
   }
   
   .navbar-nav {
@@ -1199,78 +1125,672 @@ footer .list-unstyled li:hover::before {
     padding: var(--space-3) var(--space-4) !important;
     border-radius: var(--radius-md);
     margin-bottom: var(--space-1);
-  }
-  
-  /* Footer responsive */
-  .footer-brand {
-    justify-content: center;
     text-align: center;
   }
   
-  .footer-description {
-    text-align: center;
-  }
-}
-
-@media (max-width: 576px) {
+  /* ===================================
+     HERO SECTION MOBILE
+     =================================== */
   .hero-section {
-    padding: var(--space-10) 0;
+    min-height: calc(100vh - 70px);
+    padding: var(--space-10) var(--space-4);
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+    padding: 0 var(--space-2);
   }
   
   .hero-title {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
+    margin-bottom: var(--space-6);
+    line-height: 1.2;
+  }
+  
+  .hero-title::after {
+    display: none; /* Hide emoji on small screens */
   }
   
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 1.125rem;
+    margin-bottom: var(--space-8);
+    line-height: 1.5;
   }
   
-  .btn-lg {
-    padding: var(--space-3) var(--space-5);
-    font-size: 0.8125rem;
-  }
-  
-  .auth-card {
-    padding: var(--space-5);
-    margin: var(--space-3);
-  }
-  
-  .auth-title {
-    font-size: 1.5rem;
-  }
-  
-  /* Stack buttons on very small screens */
-  .d-flex.gap-3 {
+  .hero-buttons {
     flex-direction: column;
     gap: var(--space-3);
+    align-items: stretch;
   }
   
-  .flex-fill {
+  .hero-buttons .btn {
     width: 100%;
+    max-width: none;
+    min-width: auto;
+    padding: var(--space-4) var(--space-6);
   }
   
-  /* Mobile-optimized campground cards */
+  /* ===================================
+     CAMPGROUNDS INDEX MOBILE
+     =================================== */
+  .campgrounds-header {
+    padding: var(--space-8) var(--space-4) var(--space-6) var(--space-4);
+  }
+  
+  .campgrounds-header::before {
+    display: none;
+  }
+  
+  .campgrounds-header .row {
+    text-align: center;
+  }
+  
+  .campgrounds-header .col-md-4 {
+    margin-top: var(--space-4);
+  }
+  
+  .campgrounds-header h1 {
+    font-size: 2rem;
+    margin-bottom: var(--space-3);
+  }
+  
+  .campgrounds-header .lead {
+    font-size: 1rem;
+    margin-bottom: var(--space-4);
+  }
+  
+  .campgrounds-grid {
+    padding: 0 var(--space-4) var(--space-12) var(--space-4);
+  }
+  
+  .campgrounds-grid .container {
+    padding: 0;
+  }
+  
+  /* Map overlay mobile */
+  #map-overlay {
+    margin: 0 var(--space-4) var(--space-8) var(--space-4);
+    border-radius: var(--radius-md);
+  }
+  
+  #map {
+    height: 300px !important;
+    border-radius: var(--radius-md);
+  }
+  
+  /* Campground cards mobile */
   .campground-card {
     margin-bottom: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+  
+  .campground-card .position-relative {
+    height: 200px !important;
+  }
+  
+  .campground-card .card-img-top {
+    height: 200px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+  
+  .campground-card .card-body {
+    padding: var(--space-4);
+  }
+  
+  .campground-card .card-title {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-2);
+  }
+  
+  .campground-card .card-text {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-3);
+  }
+  
+  .price-badge {
+    font-size: 0.8125rem;
+    padding: var(--space-1) var(--space-2);
+    top: var(--space-3);
+    right: var(--space-3);
   }
   
   .location-text {
     font-size: 0.8125rem;
+    margin-bottom: var(--space-3);
   }
   
-  /* Reviews responsive */
+  /* ===================================
+     CAMPGROUND SHOW PAGE MOBILE
+     =================================== */
+  .campground-details {
+    padding: var(--space-8) 0;
+  }
+  
+  .campground-details .container {
+    padding: 0 var(--space-4);
+  }
+  
+  /* Mobile layout - stack everything */
+  .campground-details .row.g-5 {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: var(--space-6);
+  }
+  
+  .campground-details .col-lg-8,
+  .campground-details .col-lg-4 {
+    padding: 0;
+  }
+  
+  /* Campground image carousel mobile */
+  .campground-image {
+    margin-bottom: var(--space-6);
+    border-radius: var(--radius-md);
+  }
+  
+  .campground-image .carousel-inner {
+    border-radius: var(--radius-md);
+  }
+  
+  .campground-image img {
+    height: 250px !important;
+    border-radius: var(--radius-md);
+  }
+  
+  /* Campground info mobile */
+  .campground-info {
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+    border-radius: var(--radius-md);
+  }
+  
+  .campground-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-4);
+  }
+  
+  .campground-meta {
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+  
+  .meta-item {
+    font-size: 0.875rem;
+  }
+  
+  .price-display {
+    align-self: flex-start;
+    font-size: 0.875rem;
+  }
+  
+  /* Action buttons mobile */
+  .campground-info .d-flex.gap-3 {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .campground-info .btn {
+    width: 100%;
+  }
+  
+  /* Map in sidebar mobile */
+  .campground-details .col-lg-4 .card {
+    margin-bottom: var(--space-4);
+  }
+  
+  .campground-details .col-lg-4 #map {
+    height: 200px !important;
+  }
+  
+  /* ===================================
+     REVIEWS SECTION MOBILE
+     =================================== */
+  .reviews-section {
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+  }
+  
   .reviews-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  
+  .reviews-header h3 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  .reviews-count {
+    font-size: 0.8125rem;
+    padding: var(--space-1) var(--space-2);
+  }
+  
+  .review-form {
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+    border-radius: var(--radius-md);
+  }
+  
+  .review-form h5 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-3);
+  }
+  
+  .review-item {
+    padding: var(--space-4);
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius-md);
+  }
+  
+  .review-header {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
   }
   
-  .review-item {
+  .review-meta {
+    width: 100%;
+  }
+  
+  .review-author {
+    font-size: 0.875rem;
+  }
+  
+  .review-body {
+    font-size: 0.875rem;
+    margin-top: var(--space-2);
+  }
+  
+  .auth-prompt {
+    padding: var(--space-6);
+    text-align: center;
+    border-radius: var(--radius-md);
+  }
+  
+  .auth-prompt h5 {
+    font-size: 1.125rem;
+  }
+  
+  /* ===================================
+     FORMS MOBILE (NEW/EDIT)
+     =================================== */
+  .py-section {
+    padding: var(--space-8) 0;
+  }
+  
+  .py-section .container {
+    padding: 0 var(--space-4);
+  }
+  
+  .py-section .col-lg-6 {
+    padding: 0;
+  }
+  
+  /* Form headers */
+  .py-section .text-center h1 {
+    font-size: 1.75rem;
+    margin-bottom: var(--space-3);
+  }
+  
+  .py-section .text-center .lead {
+    font-size: 1rem;
+    margin-bottom: var(--space-6);
+  }
+  
+  /* Form cards */
+  .py-section .card {
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+  }
+  
+  .py-section .card-body {
+    padding: var(--space-5);
+  }
+  
+  /* Form elements */
+  .form-label {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-2);
+  }
+  
+  .form-control {
+    font-size: 0.875rem;
+    padding: var(--space-3);
+  }
+  
+  textarea.form-control {
+    min-height: 120px;
+  }
+  
+  .input-group-text {
+    font-size: 0.875rem;
+    padding: var(--space-3);
+  }
+  
+  /* Form buttons */
+  .py-section .d-flex.gap-3 {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .py-section .flex-fill {
+    width: 100%;
+  }
+  
+  /* Image grid in edit form */
+  .py-section .row.g-3 {
+    --bs-gutter-x: var(--space-3);
+    --bs-gutter-y: var(--space-3);
+  }
+  
+  .py-section .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .py-section .card img {
+    height: 100px !important;
+  }
+  
+  .py-section .card-body.p-2 {
+    padding: var(--space-2) !important;
+  }
+  
+  /* Tips card */
+  .py-section .card.bg-light {
+    margin-top: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+  
+  .py-section .card.bg-light .card-body {
+    padding: var(--space-4);
+  }
+  
+  .py-section .card.bg-light h6 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+  }
+  
+  .py-section .card.bg-light .small {
+    font-size: 0.8125rem;
+  }
+  
+  /* ===================================
+     AUTHENTICATION PAGES MOBILE
+     =================================== */
+  .auth-container {
+    min-height: calc(100vh - 70px);
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .auth-container::before {
+    display: none; /* Hide decorative emoji on mobile */
+  }
+  
+  .auth-card {
+    padding: var(--space-6);
+    margin: 0;
+    max-width: 100%;
+    border-radius: var(--radius-md);
+  }
+  
+  .auth-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-2);
+  }
+  
+  .auth-subtitle {
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-6);
+  }
+  
+  /* ===================================
+     GENERAL MOBILE FIXES
+     =================================== */
+  
+  /* Buttons */
+  .btn {
+    font-size: 0.875rem;
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .btn-lg {
+    padding: var(--space-3) var(--space-5);
+    font-size: 0.875rem;
+  }
+  
+  .btn-sm {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.8125rem;
+  }
+  
+  /* Cards */
+  .card {
+    border-radius: var(--radius-md);
+  }
+  
+  .card-body {
+    padding: var(--space-4);
+  }
+  
+  /* Alerts */
+  .alert {
+    margin: 0 var(--space-4) var(--space-4) var(--space-4);
+    font-size: 0.875rem;
+    border-radius: var(--radius-md);
+  }
+  
+  /* Typography */
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+  
+  /* Footer responsive */
+  footer {
+    padding: var(--space-12) 0 var(--space-6) 0;
+  }
+  
+  footer .container {
+    padding: 0 var(--space-4);
+  }
+  
+  .footer-brand {
+    justify-content: center;
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+  
+  .footer-description {
+    text-align: center;
+    font-size: 0.9375rem;
+  }
+  
+  footer h5 {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+  
+  footer h6 {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+  
+  footer .list-unstyled {
+    text-align: center;
+  }
+  
+  footer .list-unstyled li {
+    padding-left: 0;
+    margin-bottom: var(--space-2);
+  }
+  
+  footer .list-unstyled li::before {
+    display: none;
+  }
+  
+  .footer-copyright {
+    text-align: center;
+    font-size: 0.8125rem;
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+  }
+}
+
+@media (max-width: 576px) {
+  /* ===================================
+     EXTRA SMALL MOBILE FIXES
+     =================================== */
+  
+  /* Hero section */
+  .hero-section {
+    padding: var(--space-8) var(--space-3);
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Buttons */
+  .btn {
+    font-size: 0.8125rem;
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .btn-lg {
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.8125rem;
+  }
+  
+  /* Authentication */
+  .auth-card {
+    padding: var(--space-4);
+    margin: var(--space-3);
+  }
+  
+  .auth-title {
+    font-size: 1.375rem;
+  }
+  
+  .auth-subtitle {
+    font-size: 0.875rem;
+  }
+  
+  /* Forms */
+  .py-section .card-body {
+    padding: var(--space-4);
+  }
+  
+  .py-section .text-center h1 {
+    font-size: 1.5rem;
+  }
+  
+  .py-section .text-center .lead {
+    font-size: 0.9375rem;
+  }
+  
+  /* Campgrounds */
+  .campgrounds-header {
+    padding: var(--space-6) var(--space-3) var(--space-4) var(--space-3);
+  }
+  
+  .campgrounds-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .campgrounds-grid {
+    padding: 0 var(--space-3) var(--space-10) var(--space-3);
+  }
+  
+  #map-overlay {
+    margin: 0 var(--space-3) var(--space-6) var(--space-3);
+  }
+  
+  /* Campground details */
+  .campground-details .container {
+    padding: 0 var(--space-3);
+  }
+  
+  .campground-info {
+    padding: var(--space-4);
+  }
+  
+  .campground-title {
+    font-size: 1.375rem;
+  }
+  
+  .reviews-section {
     padding: var(--space-4);
   }
   
   .review-form {
-    padding: var(--space-4);
+    padding: var(--space-3);
+  }
+  
+  .review-item {
+    padding: var(--space-3);
+  }
+  
+  /* Typography adjustments */
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.125rem; }
+  h5 { font-size: 1rem; }
+  h6 { font-size: 0.9375rem; }
+  
+  /* Location text and other small elements */
+  .location-text {
+    font-size: 0.8125rem;
+  }
+  
+  .price-badge {
+    font-size: 0.75rem;
+    padding: var(--space-1) var(--space-2);
+  }
+  
+  /* Footer */
+  footer {
+    padding: var(--space-10) 0 var(--space-5) 0;
+  }
+  
+  footer .container {
+    padding: 0 var(--space-3);
+  }
+  
+  footer h5 {
+    font-size: 1.125rem;
+  }
+  
+  footer h6 {
+    font-size: 0.9375rem;
+  }
+  
+  .footer-description {
+    font-size: 0.875rem;
+  }
+  
+  .footer-copyright {
+    font-size: 0.75rem;
+  }
+  
+  /* Alerts */
+  .alert {
+    margin: 0 var(--space-3) var(--space-3) var(--space-3);
+    font-size: 0.8125rem;
   }
 }
 

@@ -135,7 +135,7 @@ A modern, full-stack web application for discovering and sharing campgrounds. Bu
 
 ## 📧 Contact
 
-**Your Name** - [nhodzic098@gmail.com](mailto:nhodzic098@gmail.com)
+**Nedim Hodžić** - [nhodzic098@gmail.com](mailto:nhodzic098@gmail.com)
 
 **Project Link** - [https://github.com/hnedim/camp-scout](https://github.com/hnedim/camp-scout)
 
